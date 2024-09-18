@@ -1,6 +1,8 @@
 spring:
   application:
-    name: base-spring-project
+    name: producer-app
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER}
 
 server.port: 8080
 
