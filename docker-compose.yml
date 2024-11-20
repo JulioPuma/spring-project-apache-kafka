@@ -29,6 +29,18 @@ services:
     volumes:
       - kafka_data:/var/lib/kafka/data
 
+  kafdrop:
+    image: obsidiandynamics/kafdrop:3.31.0-SNAPSHOT
+    depends_on:
+      - kafka
+    ports:
+      - 19000:9000
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+#      CMD_ARGS: "--message.format=AVRO --message.keyFormat=DEFAULT"
+    networks:
+      - kafka-network
+
   app-consumer:
     build:
       context: ./consumer-app
